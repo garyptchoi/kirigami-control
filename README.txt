@@ -2,7 +2,7 @@ Codes for the deterministic and statistical control of kirigami topology
 
 Reference:
 S. Chen, G. P. T. Choi, and L. Mahadevan, 
-"Deterministic and statistical control of kirigami."
+"Deterministic and statistical control of kirigami topology."
 Proceedings of the National Academy of Sciences USA, 2020.
 
 Copyright (c) 2020, Siheng Chen, Gary Pui-Tung Choi, L. Mahadevan
