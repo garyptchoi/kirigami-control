@@ -12,3 +12,6 @@ MRP_quad_2x2.m: Construct all minimum rigidifying link patterns (MRPs) for a 2x2
 MRP_quad_3x3/4x4/5x5/7x7/3x5.m: Construct a minimum rigidifying link pattern (MRP) for an mxn quad kirigami
 MRP_quad_30x30.m: Construct a minimum rigidifying link pattern (MRP) for a 30x30 quad kirigami by hierarchical construction
 MCP_quad_2x2/3x3/4x4.m: Construct a minimum connecting link pattern (MCP) for an mxn quad kirigami
+DoF_NCC_vs_link_density_quad.m: Calculate the degree of freedom (DoF) and the number of connected components (NCC) for a quad kirigami. The number of links added vary from 0 to n_max_link (4*L*(L-1)). The size of the largest connected component and the number of internal rotational DoF can also be calculated.
+DoF_NCC_vs_link_density_kagome.m: Similar to calculations above, for the kagome kirigami.
+calc_rank.m: Calculate the rank of a sparse matrix using QR method.
