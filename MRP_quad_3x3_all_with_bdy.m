@@ -1,4 +1,5 @@
-% MRP_quad_2x2: Construct all minimum rigidifying link patterns for 2x2
+% MRP_quad_3x3_all_with_bdy: Construct all minimum rigidifying link
+% patterns for 3x3, assuming all boundary links are included
 %
 % Reference:
 % S. Chen, G. P. T. Choi, L. Mahadevan, 
@@ -6,33 +7,41 @@
 % Proceedings of the National Academy of Sciences USA, 2020.
 
 %% 
-L = 2;
+L = 3;
 nquad = L^2; %Number of quads
 nlink = ceil((3*L^2-3)/2);% theoretical lower bound for number of links
 
 % inner links
 Linkpairs=[
     4*1-1, 4*2;
-    4*1-1, 4*3-2;
-    4*2, 4*4-3;
-    4*3-2, 4*4-3;
-    
-    4*1-2, 4*2-3;
-    4*2-1, 4*4-2;
-    4*1, 4*3-3;
-    4*3-1, 4*4;
+    4*1-1, 4*4-2;
+    4*2, 4*5-3;
+    4*2-1, 4*3;
+    4*2-1, 4*5-2;
+    4*3, 4*6-3;
+    4*4-2, 4*5-3;
+    4*5-2, 4*6-3;
+    4*4-1, 4*7-2;
+    4*4-1, 4*5;
+    4*5, 4*8-3;
+    4*5-1, 4*8-2;
+    4*5-1, 4*6;
+    4*6, 4*9-3;
+    4*7-2, 4*8-3;
+    4*8-2, 4*9-3;
     ];
 
-combinations = combnk(1:length(Linkpairs),nlink);
+combinations = combnk(1:length(Linkpairs),nlink - 2*(L+L-2));
 DoF = zeros(length(combinations),1);
 tic;
 for k = 1:length(combinations)
     
-    mat=zeros(nquad*5+nlink*2,nquad*4*2); 
+    mat=zeros(nquad*5+nlink*2,nquad*4); 
     linkpairs = Linkpairs(combinations(k,:),:);
     
     %% Edge length constraints
-    % 4 quad boundary constraints, and 1 no shear constraints
+    % 4 quad boundary constraints, and 1 no shear constraints (Direction fixed
+    % for now, from bottom left to top right)
     for i=1:nquad
         mat(i*5-4,i*8-7)=-1;
         mat(i*5-4,i*8-5)=1;
@@ -47,49 +56,31 @@ for k = 1:length(combinations)
         mat(i*5-0,i*8-3)=1;
         mat(i*5-0,i*8-1)=-1;
     end
-    %%
+
+    %% Boundary links
     rown=nquad*5+1;
+    for i=1:L-1
+        [mat,rown]=constrain(mat,rown,4*i-2,4*(i+1)-3);
+    end
+    for i=L*L-L+1:L*L-1
+        [mat,rown]=constrain(mat,rown,4*i-1,4*(i+1));
+    end
+    for i=1:L:L*L-L
+        [mat,rown]=constrain(mat,rown,4*i,4*(i+L)-3);
+    end
+    for i=L:L:L*L-L
+        [mat,rown]=constrain(mat,rown,4*i-1,4*(i+L)-2);
+    end
 
     for t=1:size(linkpairs,1)
         [mat,rown]=constrain(mat,rown,linkpairs(t,1),linkpairs(t,2));
     end
-
     DoF(k) = nquad*8-rank(mat);
-%     disp(['rank = ',num2str(rank(mat))])
-%     disp(['DoF = ',num2str(nquad*8-rank(mat))])
 
 end
 toc;
 solution = find(DoF == 3);
-disp(['# MRPs = ',num2str(length(solution))])
-
-%% generate plot
-v = zeros(4*L*L,2);
-f = [];
-for i = 0:L-1 
-    for j = 0:L-1
-        n = L*i + j + 1;
-        v(4*n-3,:) = [2*j,2*i];
-        v(4*n-2,:) = [2*j+1.5,2*i];
-        v(4*n-1,:) = [2*j+1.5,2*i+1.5];
-        v(4*n,:) = [2*j,2*i+1.5];
-        f = [f; 4*n-3 4*n-2 4*n-1 4*n];
-    end
-end
-
-for k = 1:length(solution)
-    %%
-    linkpairs = Linkpairs(combinations(solution(k),:),:);
-    % plot the quads
-    figure;
-    patch('Faces',f,'Vertices',v,'FaceColor',[89 197 255]/255,'EdgeColor','k','LineWidth',3);
-    axis equal tight off
-    hold on
-    % plot the links
-    for i = 1:size(linkpairs,1)
-        plot(v(linkpairs(i,:),1), v(linkpairs(i,:),2),'r-','LineWidth',3);
-    end
-end
+disp(['# MRPs assuming all boundary links = ',num2str(length(solution))])
 
 %%
 function [mat, rown] = constrain(mat,rown,i,j)
