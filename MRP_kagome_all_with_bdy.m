@@ -6,7 +6,7 @@
 % Reference:
 % S. Chen, G. P. T. Choi, L. Mahadevan, 
 % ``Deterministic and stochastic control of kirigami topology.''
-% Proceedings of the National Academy of Sciences USA, 2020.
+% Proceedings of the National Academy of Sciences, 117(9), 4511-4517, 2020.
 
 % M = 2; %width 
 % N = 2; %height

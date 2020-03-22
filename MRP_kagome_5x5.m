@@ -1,10 +1,10 @@
-% MRP_kagome_5x5: Construct a minimum rigidifying link pattern for 7x7
+% MRP_kagome_5x5: Construct a minimum rigidifying link pattern for 5x5
 % kagome kirigami
 %
 % Reference:
 % S. Chen, G. P. T. Choi, L. Mahadevan, 
 % ``Deterministic and stochastic control of kirigami topology.''
-% Proceedings of the National Academy of Sciences USA, 2020.
+% Proceedings of the National Academy of Sciences, 117(9), 4511-4517, 2020.
 
 M = 5; %width
 N = 5; %height

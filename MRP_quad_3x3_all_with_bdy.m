@@ -1,10 +1,10 @@
 % MRP_quad_3x3_all_with_bdy: Construct all minimum rigidifying link
-% patterns for 3x3, assuming all boundary links are included
+% patterns for 3x3 quad kirigami, assuming all boundary links are included
 %
 % Reference:
 % S. Chen, G. P. T. Choi, L. Mahadevan, 
 % ``Deterministic and stochastic control of kirigami topology.''
-% Proceedings of the National Academy of Sciences USA, 2020.
+% Proceedings of the National Academy of Sciences, 117(9), 4511-4517, 2020.
 
 %% 
 L = 3;

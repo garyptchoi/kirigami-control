@@ -1,9 +1,9 @@
-% MCP_quad_2x2: Plot an exmaple of minimum connecting link patterns for 2x2
+% MCP_quad_2x2: an example of minimum connecting link patterns for 2x2
 %
 % Reference:
 % S. Chen, G. P. T. Choi, L. Mahadevan, 
 % ``Deterministic and stochastic control of kirigami topology.''
-% Proceedings of the National Academy of Sciences USA, 2020.
+% Proceedings of the National Academy of Sciences, 117(9), 4511-4517, 2020.
 
 %% Parameters
 M = 2; %width

@@ -1,10 +1,10 @@
-% MRP_quad_7x7: Construct a minimum rigidifying link pattern for 30x30
-% by hierarchical construction
+% MRP_quad_7x7: Construct a minimum rigidifying link pattern for 30x30 quad
+% kirigami by hierarchical construction
 %
 % Reference:
 % S. Chen, G. P. T. Choi, L. Mahadevan, 
 % ``Deterministic and stochastic control of kirigami topology.''
-% Proceedings of the National Academy of Sciences USA, 2020.
+% Proceedings of the National Academy of Sciences, 117(9), 4511-4517, 2020.
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
